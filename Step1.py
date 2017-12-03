@@ -11,9 +11,13 @@ class Step1:
 
     face = "front"
 
+    face_timer = 20
+
     screen = pygame.display.set_mode((width, height))
     desk = pygame.image.load("resources/images/desk.png")
-    faceimg = pygame.image.load("resources/images/face.png")
+    front = pygame.image.load("resources/images/face.png")
+    #back = pygame.image.load("resources/images/back.png")
+    #door = pygame.image.load("resources/images/door.png")
 
     fpsClock = pygame.time.Clock()
     FPS = 100
@@ -34,19 +38,29 @@ class Step1:
 
             self.screen.fill((128, 128, 128))
 
+            #self.screen.blit(self.door, (1100, 750))
+
             for i  in range(3):
                 for j in range(3):
                     self.screen.blit(self.desk, (275 + self.width/5 * i, 240 + self.height/5 *j))
 
             self.player.move()
 
-            if self.face == "front":
-                self.screen.blit(self.faceimg, (525, 25))
+            self.face_timer -= 1
 
-
-
-
-
+            if self.face_timer ==0:
+                if self.face == "front":
+                    self.screen.blit(self.front, (525, 25))
+                    self.face_timer = 20
+                    self.face = "back"
+                    #if 특정 위치라면:
+                        #break
+                    #else:
+                        #게임오버
+                #elif self.face == "back"
+                    #self.screen.blit(self.back, (525, 25))
+                    #self.face_timer = 20
+                    #self.face = "front"
 
 game = Step1()
 game.Step1()

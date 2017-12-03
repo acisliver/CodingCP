@@ -38,7 +38,7 @@ class Screen2:
             Startfont = pygame.font.Font("resources/font/consola.ttf", 40)  #폰트 불러오기
             Starttext = Startfont.render("Start", True, (225, 225, 225))        #Start객체 생성
             StarttextRect = Starttext.get_rect()
-            StarttextRect.center = (600, 400)
+            StarttextRect.center = (275, 240)
             self.screen.blit(Starttext, StarttextRect)
 
             self.list = [StarttextRect]

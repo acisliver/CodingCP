@@ -1,18 +1,14 @@
-#복도에서 좀비 피해서 탈출
+#함정을 피해서 탈출
 import pygame
-import random
 from Player import Player
-from Zombie import Zombie
-from Collider import Collider
+#from Trap import Trap
 from WL import WL
 from Screen2 import Screen2
 
-class Step2:
+class Screen:
     width=1200
     height = 800
-    zom_timer = 6
-    zombies=[]
-    badguy=None
+
     x=100
     y=100
     exitcode = 0
@@ -25,6 +21,7 @@ class Step2:
     wl = None
     heallvalue=None
 
+
     fpsClock = pygame.time.Clock()
     FPS = 100
 
@@ -34,7 +31,6 @@ class Step2:
 
     def __init__(self):
         self.player = Player(self.screen ,self.x,self.y)
-        self.collider=Collider(self.screen,self.zombies,self.player)
         self.wl=WL(self.screen,self.exitcode)
         self.screen2=Screen2(self.screen,self.width,self.height)
 
@@ -52,20 +48,9 @@ class Step2:
             self.screen.fill((128, 128, 128))
 
             self.player.move()      #플레이어 무브함수
-            self.collider.collide() #충돌 함수
-            self.healgauge = self.collider.heallgauge
+
 
             pygame.display.update()
-
-            for zombie in self.zombies: #몹의 객체만큼
-                zombie.move()   #몹 이동 함수
-            pygame.display.update()
-
-            self.zom_timer -= 1
-            if self.zom_timer == 0:
-                zombie = Zombie(self.screen, self.width, random.randint(50, self.height - 100), 16)    #위치랜덤의 속도8인 몹 객체 생성
-                self.zombies.append(zombie)                                 #리스트에 추가
-                self.zom_timer = 15
 
             if self.healgauge < 0:
                 break
@@ -75,9 +60,9 @@ class Step2:
     def Starting(self):
         while True:
             self.screen2.Start()    #스크린2 실행
-            game = Step2()
+            game = Screen()
             game.Start()            #스크린1 실행
 
 
-game2 = Step2()
+game2 = Screen()
 game2.Starting()

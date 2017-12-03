@@ -1,3 +1,4 @@
+#3단계 위에서 내려오는 장애물 피하기
 import pygame
 import random
 from Player import Player
@@ -65,7 +66,7 @@ class Screen:
 
             self.badtimer -= 1
             if self.badtimer == 0:
-                badguy = Badguy(self.screen, random.randint(50, self.height - 50), 0, 16)    #위치랜덤의 속도8인 몹 객체 생성
+                badguy = Badguy(self.screen, random.randint(50, self.width - 50), 0, 16)    #위치랜덤의 속도8인 몹 객체 생성
                 self.badguys.append(badguy)                                 #리스트에 추가
                 self.badtimer = 6
 
