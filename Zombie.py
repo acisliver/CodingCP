@@ -14,5 +14,5 @@ class Zombie(pygame.Rect):
         self.screen = screen
 
     def move(self):             #몹 움직임 함수
-        self.top -= self.speed
+        self.top += self.speed
         self.screen.blit(self.zombie1,(self.top,self.left))

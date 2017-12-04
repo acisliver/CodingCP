@@ -3,14 +3,13 @@ import pygame
 from Healbar import Healbar
 
 class Collider:
-    arrows=[]
     badguys=[]
     collplayer=[]
     heallgauge=194
     heal=None
 
-    def __init__(self,sceen,badguys,player):
-        self.screen=sceen
+    def __init__(self,screen,badguys,player):
+        self.screen=screen
         self.badguys=badguys
         self.collplayer=player
 

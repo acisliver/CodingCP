@@ -4,9 +4,9 @@ import pygame
 class Trap:
     screen = None
     trap = pygame.image.load("resources/images/trap")
-    trap_active = pygame.image.load("resources/images/trap_active")
 
     def __init__(self, screen, x ,y):
+        super().__init__(self.trap.get_rect())
         self.screen = screen
         self.top = x
         self.left = y

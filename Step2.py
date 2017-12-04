@@ -63,7 +63,7 @@ class Step2:
 
             self.zom_timer -= 1
             if self.zom_timer == 0:
-                zombie = Zombie(self.screen, self.width, random.randint(50, self.height - 100), 16)    #위치랜덤의 속도8인 몹 객체 생성
+                zombie = Zombie(self.screen, 0, random.randint(50, self.height - 100), 16)    #위치랜덤의 속도8인 몹 객체 생성
                 self.zombies.append(zombie)                                 #리스트에 추가
                 self.zom_timer = 15
 
