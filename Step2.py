@@ -18,7 +18,8 @@ class Step2:
     exitcode = 0
 
     background = pygame.image.load('resources/images/grass.png')
-    youwin = pygame.image.load("resources/images/youwin.png")
+    waydoor = pygame.image.load("resources/images/waydoor.png")
+    arrow = pygame.image.load("resources/images/arrow.png")
 
     player=[]
     collider=None
@@ -51,6 +52,9 @@ class Step2:
                     self.screen.blit(self.background, (i * self.bg_columns, j * self.bg_rows))
             self.screen.fill((128, 128, 128))
 
+            self.screen.blit(self.waydoor, (100, 100))
+            self.screen.blit(self.arrow, (100, 700))
+
             self.player.move()      #플레이어 무브함수
             self.collider.collide() #충돌 함수
             self.healgauge = self.collider.heallgauge
@@ -66,6 +70,7 @@ class Step2:
                 zombie = Zombie(self.screen, 0, random.randint(50, self.height - 100), 16)    #위치랜덤의 속도8인 몹 객체 생성
                 self.zombies.append(zombie)                                 #리스트에 추가
                 self.zom_timer = 15
+
 
             if self.healgauge < 0:
                 break

@@ -1,7 +1,7 @@
 #함정을 피해서 탈출
 import pygame
 from Player import Player
-#from Trap import Trap
+from Trap import Trap
 from WL import WL
 from Screen2 import Screen2
 
@@ -14,13 +14,10 @@ class Screen:
     exitcode = 0
 
     background = pygame.image.load('resources/images/grass.png')
-    youwin = pygame.image.load("resources/images/youwin.png")
 
     player=[]
-    collider=None
-    wl = None
-    heallvalue=None
-
+    trap = None
+    traps = []
 
     fpsClock = pygame.time.Clock()
     FPS = 100
@@ -33,6 +30,14 @@ class Screen:
         self.player = Player(self.screen ,self.x,self.y)
         self.wl=WL(self.screen,self.exitcode)
         self.screen2=Screen2(self.screen,self.width,self.height)
+
+
+    def Active(self,x,y):
+        self.trap = Trap(self.screen, x, y)
+        self.trap.draw()
+        self.traps.append(self.trap)
+        if self.player.colliderect(self.trap):
+            print(2)
 
     def Start(self):
         while True:
@@ -47,22 +52,16 @@ class Screen:
                     self.screen.blit(self.background, (i * self.bg_columns, j * self.bg_rows))
             self.screen.fill((128, 128, 128))
 
-            self.player.move()      #플레이어 무브함수
+            self.Active(200, 500)
+            self.Active(500, 100)
+            self.Active(900, 100)
+            self.Active(1000, 400)
+            self.Active(700, 650)
 
+            self.player.move()      #플레이어 무브함수
 
             pygame.display.update()
 
-            if self.healgauge < 0:
-                break
-        if self.healgauge < 0:  #체력게이지가 0보다 작으면
-            self.wl.print()     #win or lose 출력
 
-    def Starting(self):
-        while True:
-            self.screen2.Start()    #스크린2 실행
-            game = Screen()
-            game.Start()            #스크린1 실행
-
-
-game2 = Screen()
-game2.Starting()
+game = Screen()
+game.Start()

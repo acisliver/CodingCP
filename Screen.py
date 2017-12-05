@@ -10,24 +10,22 @@ from Screen2 import Screen2
 class Screen:
     width=1200
     height = 800
-    badtimer = 6
+    badtimer = 20
     badguys=[]
-    badguy=None
+
     x=100
     y=100
     exitcode = 0
-    count=60
-    one_count=0
+
 
     background = pygame.image.load('resources/images/grass.png')
-    gameover = pygame.image.load("resources/images/gameover.png")
-    youwin = pygame.image.load("resources/images/youwin.png")
+    arrow2 = pygame.image.load("resources/images/arrow2.png")
+
 
     player=[]
     collider=None
-    wl = None
     heallvalue=None
-    timer=None
+
 
     fpsClock = pygame.time.Clock()
     FPS = 100
@@ -54,6 +52,7 @@ class Screen:
                 for j in range(int(self.height // self.bg_rows) + 1):
                     self.screen.blit(self.background, (i * self.bg_columns, j * self.bg_rows))
 
+            self.screen.blit(self.arrow2, (1000, 650))
 
             self.player.move()      #플레이어 무브함수
             self.collider.collide() #충돌 함수
@@ -66,10 +65,10 @@ class Screen:
 
             self.badtimer -= 1
             if self.badtimer == 0:
-                badguy = Badguy(self.screen, random.randint(50, self.width - 50), 0, 16)    #위치랜덤의 속도8인 몹 객체 생성
+                badguy = Badguy(self.screen, random.randint(50, self.width - 50), 0, 10)    #위치랜덤의 속도8인 몹 객체 생성
                 self.badguys.append(badguy)                                 #리스트에 추가
-                self.badtimer = 6
-
+                self.badtimer = 20
+            pygame.display.update()
             if self.healgauge < 0:
                 break
         if self.healgauge < 0:  #체력게이지가 0보다 작으면

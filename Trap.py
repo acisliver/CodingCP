@@ -1,9 +1,9 @@
 #함정
 import pygame
 
-class Trap:
+class Trap(pygame.Rect):
     screen = None
-    trap = pygame.image.load("resources/images/trap")
+    trap = pygame.image.load("resources/images/trap.png")
 
     def __init__(self, screen, x ,y):
         super().__init__(self.trap.get_rect())
