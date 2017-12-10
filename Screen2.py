@@ -12,8 +12,8 @@ class Screen2:
         self.height=height
 
     def Start(self):
-        finished=0
-        while not finished:
+        finisher=0
+        while not finisher:
             position = pygame.mouse.get_pos()   #마우스 위치 불러오기
 
             for event in pygame.event.get():    #종료 이벤트
@@ -26,7 +26,7 @@ class Screen2:
                         if lists == self.list[0]:
                             if lists.collidepoint(event.pos):   #Start를 눌렀을 때
 
-                                finished=1                  #while문 종료
+                                finisher=1                  #while문 종료
                                 break
 
             self.screen.fill((0, 0, 0))     #검정색으로 칠하기
@@ -38,7 +38,7 @@ class Screen2:
             Startfont = pygame.font.Font("resources/font/consola.ttf", 40)  #폰트 불러오기
             Starttext = Startfont.render("Start", True, (225, 225, 225))        #Start객체 생성
             StarttextRect = Starttext.get_rect()
-            StarttextRect.center = (275, 240)
+            StarttextRect.center = (300, 270)
             self.screen.blit(Starttext, StarttextRect)
 
             self.list = [StarttextRect]
