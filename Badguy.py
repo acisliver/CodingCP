@@ -4,7 +4,7 @@ import random
 class FCredit(pygame.Rect):
     speed=0
     screen = None
-    f_Credit = pygame.image.load("resources/images/F.png")
+    f_Credit = pygame.image.load("resources/images/practice.png")
 
     def __init__(self, screen, x, y, speed):
         super().__init__(self.f_Credit.get_rect())     #상위 클래스의 함수(rect)를 사용하기 위해 super()사용
