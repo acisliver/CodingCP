@@ -12,7 +12,7 @@ class Step4:
 
     x=100
     y=100
-    exitcode = 0
+    step4_finisher = True
 
     background = pygame.image.load('resources/images/grass.png')
 
@@ -25,7 +25,7 @@ class Step4:
         self.width = width
         self.height = height
         self.player2 = Player2(self.screen ,self.x,self.y)
-        self.wl=WL(self.screen,self.exitcode)
+        self.wl=WL(self.screen)
         self.screen2=Screen2(self.screen,self.width,self.height)
 
     def Active(self,x,y):
@@ -36,8 +36,8 @@ class Step4:
             self.wl.print()
 
     def Step4(self):
-        finisher = True
-        while finisher:
+
+        while self.step4_finisher:
             for event in pygame.event.get():    #종료 이벤트
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -55,9 +55,7 @@ class Step4:
             self.arrow = Arrow(self.screen, 100, 100)
             self.arrow.draw()
 
-
-
             self.player2.move()
 
             if self.player2.colliderect(self.arrow):
-                finisher = False
+                self.step4_finisher = False

@@ -9,8 +9,11 @@ from Step2 import Step2
 from Step3 import Step3
 from Step4 import Step4
 from Clear import Clear
+from WL import WL
 
 class Step1:
+    step1_finisher = True
+
     width = 1200
     height = 800
 
@@ -38,12 +41,11 @@ class Step1:
     def __init__(self):
         self.player = Player(self.screen, self.x, self.y)
         self.study = Study(self.screen, self.player, self.desks, self.invincibility_flag)
-        self.screen2 = Screen2(self.screen, self.width, self.height)
+        self.wl = WL(self.screen)
 
     def Step1(self):
 
-        finisher=True
-        while finisher:
+        while self.step1_finisher:
             for event in pygame.event.get():    #종료 이벤트
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -59,7 +61,9 @@ class Step1:
                     self.desk = Desk(self.screen, 275 + self.width/5 * i, 340 + self.height/5 *j)
                     self.desk.draw()
                     self.desks.append(self.desk)
-            self.study.study(self.desk)
+
+            self.study.study()
+
 
             self.door = Door(self.screen, 1050, 600)
             self.door.draw()
@@ -70,6 +74,7 @@ class Step1:
                     print(2)
                 else:
                     print(1)
+                    #self.wl.print()
 
             if self.face == "front":
                 self.screen.blit(self.front, (700, 50))
@@ -87,11 +92,12 @@ class Step1:
                     self.face = "front"
 
             if self.player.colliderect(self.door):
-                finisher = False
+                self.step1_finisher = False
 
     def Starting(self):
         while True:
-            self.screen2.Start()
+            screen2 = Screen2(self.screen, self.width, self.height)
+            screen2.Start()
             game_step1 = Step1()
             game_step1.Step1()
             game_step2 = Step2(self.screen, self.width, self.height)

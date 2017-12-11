@@ -15,7 +15,7 @@ class Step3:
 
     x=100
     y=100
-    exitcode = 0
+    step3_finisher = True
 
     background = pygame.image.load('resources/images/grass.png')
 
@@ -29,11 +29,11 @@ class Step3:
         self.height = height
         self.player = Player(self.screen ,self.x,self.y)
         self.collider=Collider(self.screen,self.badguys,self.player)
-        self.wl=WL(self.screen,self.exitcode)
+        self.wl=WL(self.screen)
 
     def Step3(self):
-        finisher= True
-        while finisher:
+
+        while self.step3_finisher:
             for event in pygame.event.get():    #종료 이벤트
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -65,6 +65,6 @@ class Step3:
             if self.healgauge < 0:
                 break
             if self.player.colliderect(self.arrow2):
-                finisher = False
+                self.step3_finisher = False
         if self.healgauge < 0:  #체력게이지가 0보다 작으면
             self.wl.print()

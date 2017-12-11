@@ -5,7 +5,6 @@ class Study:
     screen = None
     player = None
     desks = []
-    flag = False
     invincibility_flag = False
 
     def __init__(self, screen, player, desks, invincibility_flag):
@@ -14,8 +13,9 @@ class Study:
         self.desks = desks
         self.invincibility_flag = invincibility_flag
 
-    def study(self, desk):
+    def study(self):
+        self.invincibility_flag = False
+        for desk in self.desks:
             if self.player.colliderect(desk):
                 self.invincibility_flag = True
-            else:
-                self.invincibility_flag = False
+

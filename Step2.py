@@ -14,7 +14,7 @@ class Step2:
     badguy=None
     x=100
     y=100
-    exitcode = 0
+    step2_finisher = True
 
     background = pygame.image.load('resources/images/grass.png')
     waydoor = pygame.image.load("resources/images/waydoor.png")
@@ -30,11 +30,11 @@ class Step2:
         self.height = height
         self.player2 = Player2(self.screen ,self.x,self.y)
         self.collider=Collider(self.screen,self.zombies,self.player2)
-        self.wl=WL(self.screen,self.exitcode)
+        self.wl=WL(self.screen)
 
     def Step2(self):
-        finisher = True
-        while finisher:
+
+        while self.step2_finisher:
             for event in pygame.event.get():    #종료 이벤트
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -73,7 +73,7 @@ class Step2:
             if self.healgauge < 0:
                 break
             if self.player2.colliderect(self.arrow):
-                finisher = False
+                self.step2_finisher = False
 
         if self.healgauge < 0:  #체력게이지가 0보다 작으면
             self.wl.print()     #win or lose 출력
