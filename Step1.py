@@ -27,7 +27,7 @@ class Step1:
 
     invincibility_flag = False
 
-    face_timer = 700
+    face_timer = 500
 
     screen = pygame.display.set_mode((width, height))
 
@@ -71,10 +71,9 @@ class Step1:
 
             if self.face == "front":
                 if self.study.invincibility_flag==True:
-                    print(2)
+                    pass
                 else:
-                    print(1)
-                    #self.wl.print()
+                    self.wl.print()
 
             if self.face == "front":
                 self.screen.blit(self.front, (700, 50))
@@ -84,7 +83,7 @@ class Step1:
 
             if self.face_timer ==0:
                 if self.face == "front":
-                    self.face_timer = 700
+                    self.face_timer = 500
                     self.face = "back"
 
                 elif self.face == "back":
