@@ -69,18 +69,6 @@ class Step1:
             self.door.draw()
             self.player.move()
 
-            if self.face == "front":
-                if self.study.invincibility_flag==True:
-                    pass
-                else:
-                    self.wl.print()
-
-            if self.face == "front":
-                self.screen.blit(self.front, (700, 50))
-            elif self.face == "back":
-                self.screen.blit(self.back, (700, 50))
-            self.face_timer -= 1
-
             if self.face_timer ==0:
                 if self.face == "front":
                     self.face_timer = 500
@@ -89,6 +77,17 @@ class Step1:
                 elif self.face == "back":
                     self.face_timer = 300
                     self.face = "front"
+            if self.face == "front":
+                self.screen.blit(self.front, (700, 50))
+            elif self.face == "back":
+                self.screen.blit(self.back, (700, 50))
+            self.face_timer -= 1
+
+            if self.face == "front":
+                if self.study.invincibility_flag==True:
+                    pass
+                else:
+                    self.wl.print()
 
             if self.player.colliderect(self.door):
                 self.step1_finisher = False
